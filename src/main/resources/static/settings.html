@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sozlamalar</title>
+    <!-- Telegram WebApp API skriptini qo'shing -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            box-sizing: border-box;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+        input[type="text"], input[type="email"], input[type="password"], select {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #4CAF50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        /* Namoz yuborish switch */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 50px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            border-radius: 50px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+        }
+        input:checked + .slider {
+            background-color: #4CAF50;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+
+        /* Loading indicator */
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #4CAF50;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 2s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            color: #e74c3c;
+            text-align: center;
+            margin: 10px 0;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 22px;
+            }
+            .container {
+                padding: 15px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<h1>Sozlamalar</h1>
+
+<div class="loading">
+    <div class="loading-spinner"></div>
+    <p>Ma'lumotlar yuklanmoqda...</p>
+</div>
+
+<div class="error-message" id="error-message">
+    Ma'lumotlarni yuklashda xatolik yuz berdi. Iltimos, qayta urinib ko'ring.
+</div>
+
+<div class="container">
+    <form id="settings-form">
+        <div class="form-group">
+            <label for="name">Ismingiz</label>
+            <input type="text" id="name" name="name" placeholder="Ismingizni kiriting">
+        </div>
+
+        <div class="form-group">
+            <label for="language">Tilni tanlang</label>
+            <select id="language" name="language">
+                <option value="Toshkent">Toshkent</option>
+                <option value="Buxoro">Buxoro</option>
+                <option value="Samarqand">Samarqand</option>
+                <option value="Navoiy">Navoiy</option>
+                <option value="Xiva">Xiva</option>
+                <option value="Nukus">Nukus</option>
+                <option value="Jizzax">Jizzax</option>
+                <option value="Surxondaryo">Surxondaryo</option>
+                <option value="Shahrisabz">Shahrisabz</option>
+                <option value="Farg'ona">Farg'ona</option>
+                <option value="Andijon">Andijon</option>
+                <option value="Namangan">Namangan</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="namoz-toggle">Har kunlik namoz malumotlarini yuborish</label>
+            <label class="switch">
+                <input type="checkbox" id="namoz-toggle">
+                <span class="slider"></span>
+            </label>
+        </div>
+
+        <button type="submit">Sozlamalarni saqlash</button>
+    </form>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    // Telegram WebApp obyektini olish
+    const tg = window.Telegram.WebApp;
+
+    // DOM elements
+    const settingsForm = document.getElementById('settings-form');
+    const nameInput = document.getElementById('name');
+    const languageSelect = document.getElementById('language');
+    const namozToggle = document.getElementById('namoz-toggle');
+    const loadingElement = document.querySelector('.loading');
+    const containerElement = document.querySelector('.container');
+    const errorMessage = document.getElementById('error-message');
+
+    // Get chatId from URL or localStorage
+    const urlParams = new URLSearchParams(window.location.search);
+    let chatId = urlParams.get('chatId');
+
+    // If chatId exists in URL, save it to localStorage
+    if (chatId) {
+        localStorage.setItem('userChatId', chatId);
+        console.log('ChatId from URL saved to localStorage:', chatId);
+    }
+    // If not in URL, try to get from localStorage
+    else {
+        chatId = localStorage.getItem('userChatId');
+        console.log('ChatId retrieved from localStorage:', chatId);
+    }
+
+    // Telegram WebApp ni ishga tushirish
+    tg.expand(); // WebApp ni kengaytirish
+
+    function showLoading() {
+        loadingElement.style.display = 'block';
+        containerElement.style.display = 'none';
+        errorMessage.style.display = 'none';
+    }
+
+    function hideLoading() {
+        loadingElement.style.display = 'none';
+        containerElement.style.display = 'block';
+    }
+
+    function showError(message) {
+        errorMessage.textContent = message || 'Ma\'lumotlarni yuklashda xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.';
+        errorMessage.style.display = 'block';
+        loadingElement.style.display = 'none';
+    }
+
+    async function loadUserData() {
+        if (!chatId) {
+            showError('Chat ID topilmadi');
+            return;
+        }
+
+        showLoading();
+
+        try {
+            console.log('Requesting user data for chatId:', chatId);
+
+            // Make sure this URL matches your controller endpoint
+            const response = await axios({
+                url: "/api/chatId",  // This should match your SettingsController endpoint
+                method: "GET",
+                params: { chatId }
+            });
+
+            console.log("API Response:", response.data); // Add this for debugging
+
+            const userData = response.data;
+
+            // Fill form with user data
+            nameInput.value = userData.fullName || '';
+
+            // Set city/language if available
+            if (userData.city) {
+                const cityOption = Array.from(languageSelect.options).find(option => option.value === userData.city);
+                if (cityOption) {
+                    cityOption.selected = true;
+                }
+            }
+
+            // Set toggle state
+            namozToggle.checked = userData.dailyReminder === true;
+
+            hideLoading();
+        } catch (error) {
+            console.error('Error loading user data:', error);
+            showError('Ma\'lumotlarni yuklashda xatolik: ' + (error.response ? error.response.status : error.message));
+        }
+    }
+
+    // Save settings
+    async function saveSettings(event) {
+        event.preventDefault();
+
+        if (!chatId) {
+            alert('Chat ID topilmadi');
+            return;
+        }
+
+        showLoading();
+
+        try {
+            // Save all settings
+            await axios({
+                url: "/api/updateSettings",
+                method: "POST",
+                data: {
+                    chatId,
+                    fullName: nameInput.value,
+                    city: languageSelect.value,
+                    dailyReminder: namozToggle.checked
+                }
+            });
+
+            hideLoading();
+
+            // Muvaffaqiyatli saqlangandan so'ng, WebApp ni yopish
+            alert('Sozlamalar muvaffaqiyatli saqlandi!');
+
+            // Qisqa kechikish bilan WebApp ni yopish (alert ko'rinishi uchun)
+            setTimeout(() => {
+                // Telegram WebApp ni yopish
+                tg.close();
+            }, 200);
+
+        } catch (error) {
+            console.error('Error saving settings:', error);
+            hideLoading();
+            alert('Sozlamalarni saqlashda xatolik yuz berdi. Iltimos, qayta urinib ko\'ring.');
+        }
+    }
+
+    // Update reminder setting when toggle changes
+    async function updateReminderSetting() {
+        if (!chatId) return;
+
+        try {
+            await axios({
+                url: "/api/updateReminder",
+                method: "POST",
+                data: {
+                    chatId,
+                    dailyReminder: namozToggle.checked
+                }
+            });
+        } catch (error) {
+            console.error('Error updating reminder setting:', error);
+        }
+    }
+
+    // Event listeners
+    document.addEventListener('DOMContentLoaded', loadUserData);
+    settingsForm.addEventListener('submit', saveSettings);
+    namozToggle.addEventListener('change', updateReminderSetting);
+
+    // Add debugging info
+    console.log('Script initialized with chatId:', chatId);
+</script>
+
+</body>
+</html>

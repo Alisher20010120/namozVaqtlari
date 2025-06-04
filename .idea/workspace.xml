@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="18555ece-eba2-4b45-8d46-c8115281e3e8" name="Changes" comment="" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="com.intellij.jpb.JpaRepository" />
+        <option value="HTML File" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="JpbToolWindowState">
+    <option name="isToolWindowVisible" value="false" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2sknllDJzofJsgGJWUP6kS7Jz5V" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;Spring Boot.NamozVaqtlariApplication.executor&quot;: &quot;Run&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Alisher/Downloads/iPortfolio&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;postgresql&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/static" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="NamozVaqtlariApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="namozVaqtlari" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="uz.pdp.namozvaqtlari.NamozVaqtlariApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
+      <module name="namozVaqtlari" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="uz.pdp.namozvaqtlari.NamozVaqtlariApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-IU-243.25659.39" />
+        <option value="bundled-js-predefined-d6986cc7102b-1632447f56bf-JavaScript-IU-243.25659.39" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="18555ece-eba2-4b45-8d46-c8115281e3e8" name="Changes" comment="" />
+      <created>1739008601419</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1739008601419</updated>
+      <workItem from="1739008602723" duration="3416000" />
+      <workItem from="1739012043331" duration="2178000" />
+      <workItem from="1739015614470" duration="1934000" />
+      <workItem from="1739020431338" duration="22624000" />
+      <workItem from="1739082240346" duration="17147000" />
+      <workItem from="1739120253730" duration="2877000" />
+      <workItem from="1739164053743" duration="8368000" />
+      <workItem from="1739180770724" duration="1969000" />
+      <workItem from="1739266452230" duration="6490000" />
+      <workItem from="1739283323270" duration="1057000" />
+      <workItem from="1739298260354" duration="3703000" />
+      <workItem from="1739342747500" duration="125000" />
+      <workItem from="1739437986310" duration="1295000" />
+      <workItem from="1739530847077" duration="3604000" />
+      <workItem from="1739600178609" duration="7925000" />
+      <workItem from="1739701065923" duration="476000" />
+      <workItem from="1739761294149" duration="1576000" />
+      <workItem from="1739786308001" duration="48000" />
+      <workItem from="1740460681889" duration="3590000" />
+      <workItem from="1740641505000" duration="104000" />
+      <workItem from="1742621022389" duration="804000" />
+      <workItem from="1742622435626" duration="4022000" />
+      <workItem from="1742638340023" duration="9727000" />
+      <workItem from="1742802965803" duration="1007000" />
+      <workItem from="1742812330617" duration="3297000" />
+      <workItem from="1743142919457" duration="10674000" />
+      <workItem from="1743402197648" duration="10204000" />
+      <workItem from="1745489950613" duration="3314000" />
+      <workItem from="1745503962165" duration="1025000" />
+      <workItem from="1745507003178" duration="77000" />
+      <workItem from="1746666067716" duration="13004000" />
+      <workItem from="1749025150017" duration="350000" />
+      <workItem from="1749025511659" duration="31000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
